@@ -29,6 +29,18 @@ public class BakeryApp {
         }
     }
 
+
+    public static void displayAll(String str) {
+        BakeryService display = new BakeryService();
+        ArrayList<Bakery> displayToPrint;
+        displayToPrint = display.displayAllFromBS();
+
+        PrintClass printAllResult = new PrintClass();
+
+        printAllResult.printDietRestrictedBakery(displayToPrint, str);
+
+    }
+
     public static void searchDietRestriction(String str2) {
 
         System.out.println("=========================================================================================");
@@ -52,14 +64,4 @@ public class BakeryApp {
 
     }
 
-    public static void displayAll(String str) {
-        BakeryService display = new BakeryService();
-        ArrayList<Bakery> displayToPrint;
-        displayToPrint = display.displayAllFromBS();
-
-        PrintClass printAllResult = new PrintClass();
-
-        printAllResult.printDietRestrictedBakery(displayToPrint, str);
-
-    }
 }
