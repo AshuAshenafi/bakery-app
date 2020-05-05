@@ -7,7 +7,7 @@ public class PrintClass {
 
     public void printDietRestrictedBakery(ArrayList<Bakery> arr, String str1) {
         // prompt user to display what the search result revealed.
-        System.out.print("\nYour search for \"" + str1 + "\" revealed the following:\n");
+        System.out.print("Your search for \"" + str1 + "\" revealed the following:\n");
         // print output table head
         printTableHeader();
         for (int i = 0; i < arr.size(); i++) {

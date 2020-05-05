@@ -31,6 +31,8 @@ public class BakeryService {
 
 
     LocalDate d1 = LocalDate.now();
+    ArrayList<String> dietRestDomain = new ArrayList<>();
+
 
     public void backeryLoader() {
 
@@ -152,6 +154,19 @@ public class BakeryService {
         LocalDate easterBasketDate = d1.plusDays(1);
         Bakery easterBasket = new Bakery("EASTER BASKET", 28.95, 10, easterBasketDate, easterBasketRestrictions);
         availableBakery.add(easterBasket);
+
+        // populate diet restriction domain
+        dietRestDomain.add("eggs");
+        dietRestDomain.add("dairy");
+        dietRestDomain.add("gluten");
+        dietRestDomain.add("soy");
+        dietRestDomain.add("tree nut");
+        dietRestDomain.add("sesame");
+        dietRestDomain.add("peanut");
+        dietRestDomain.add("vegan");
+        dietRestDomain.add("coconut");
+        dietRestDomain.add("oats");
+        dietRestDomain.add("legume");
     }
 
     public ArrayList<Bakery> searchDietRestriction(String separatedByComma1) {
@@ -171,6 +186,81 @@ public class BakeryService {
 //        // confirm if user typed diet restrictions correctly among our domain of restrictions  ?????
 //    public void checkDietRestrictionNames(){
 //
+
+
+
+
+
+        String wrongNames = "";
+        for (int i = 0; i < dietRestrictNames.size(); i++) {
+            int count = 0;
+            int temp = -1;
+            for (int j = 0; j < dietRestDomain.size(); j++) {
+                if(dietRestrictNames.get(i).equals(dietRestDomain.get(j))){
+
+                    count++;
+                }
+                else{
+                    temp = i;
+                }
+            }
+                if(count == 0){
+                    wrongNames += dietRestrictNames.get(i) + ", ";
+                    dietRestrictNames.remove(i);
+                    i--;
+                }
+
+        }
+        // list wrong or misspelled words ... if user ever typed
+        if(!wrongNames.equals("")){
+
+                    System.out.println("\nsearch can't be made for wrong in inputs \" " + wrongNames + "\"");
+        }
+        else{
+            // print just new line
+            System.out.println();
+        }
+
+
+
+//////////////////////////////under construction/////////////////////
+        /*
+        for (int j = 0; j < availableBakery.size(); j++) {
+
+            int count = 0;
+            for (int k = 0; k < availableBakery.get(j).getDietRestriction().size(); k++) {
+                for (int i = 0; i < dietRestrictNames.size(); i++) {
+
+                    String nameFromInput1 = dietRestrictNames.get(i);
+                    String nameFromExistingBakery = availableBakery.get(j).getDietRestriction().get(k);
+                    boolean nameExists = nameFromInput1.equals(nameFromExistingBakery);
+
+                    if (nameExists) {
+                        count++;
+                    }
+
+                } // for loop i
+            }   // for loop k
+            int qty = availableBakery.get(j).getQuantityInStock();
+            if (count == 0 && qty > 0) {
+                Bakery nameResult = new Bakery();
+
+                nameResult.setName(availableBakery.get(j).getName());
+                nameResult.setPrice(availableBakery.get(j).getPrice());
+                nameResult.setQuantityInStock(availableBakery.get(j).getQuantityInStock());
+                nameResult.setExpirationDate(availableBakery.get(j).getExpirationDate());
+                nameResult.setDietRestriction(availableBakery.get(j).getDietRestriction());
+
+                searchResult.add(nameResult);
+            }
+        }
+        return searchResult;
+
+
+        */
+
+//////////////////////////////under construction/////////////////////
+
 //        }
         // check for the match of diet restrictions
         for (int j = 0; j < availableBakery.size(); j++) {
@@ -201,7 +291,7 @@ public class BakeryService {
 
                 searchResult.add(nameResult);
             }
-        }
+        }   // for (int j = 0; j < availableBakery.size(); j++)
         return searchResult;
     }
 
